@@ -1,0 +1,57 @@
+@import '~@elastic/eui/src/global_styling/variables/colors';
+
+.settings-container {
+  position: relative;
+  margin-bottom: 40px;
+
+  &--bottom-connector {
+    &::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -55px;
+      width: 6px;
+      background-color: #D3DAE6;
+      height: 25px;
+      z-index: 2;
+    }
+  }
+}
+
+.tier-container {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  top: 30px;
+  bottom: -30px;
+  right: -10px;
+  left: 10px;
+  border-radius: 6px;
+
+
+  &--hot-tier {
+    background-color: $euiColorVis9_behindText;
+  }
+
+  &--warm-tier {
+    background-color: $euiColorVis5_behindText;
+  }
+
+  &--cold-tier {
+    background-color: $euiColorVis1_behindText;
+  }
+
+
+  &__content {
+    display: flex;
+    width:100%;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}
+
+.phase-container {
+  position: relative;
+  // box-shadow: none !important;
+  z-index: 1;
+}
