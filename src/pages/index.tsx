@@ -1,15 +1,10 @@
 import React from 'react';
-import MyComponent from '../components/my_component';
 import {
   EuiButton,
   EuiButtonEmpty,
-  EuiCode,
   EuiPage,
   EuiPageBody,
   EuiPageContent,
-  EuiPageContentBody,
-  EuiPageContentHeader,
-  EuiPageContentHeaderSection,
   EuiPageHeader,
   EuiPageHeaderSection,
   EuiText,
@@ -28,8 +23,6 @@ import './index.scss';
 
 const tierClassMap = {
   hot: 'tier-container--hot-tier',
-  // warm: 'tier-container--hot-tier',
-  // cold: 'tier-container--hot-tier',
   warm: 'tier-container--warm-tier',
   cold: 'tier-container--cold-tier',
 };
@@ -53,71 +46,73 @@ const Phase = ({
   const tierClass = tierClassMap[tier];
   const tierTitle = titleMap[tier];
   return (
-    <div
-      className={`settings-container ${
-        noBottomConnector ? '' : 'settings-container--bottom-connector'
-      }`}>
-      <EuiPanel className="phase-container" hasShadow={false}>
-        <EuiTitle size="m">
-          <h2>{phaseTitle} phase</h2>
-        </EuiTitle>
-        <EuiSpacer size="s" />
-        <EuiFlexGroup direction="column">
-          <EuiFlexItem>
-            <EuiFormRow>
-              <EuiFlexGroup gutterSize="s" alignItems="center">
-                <EuiFlexItem grow={false}>
-                  <EuiText>Retain data in this phase for</EuiText>
-                </EuiFlexItem>
-                <EuiFlexItem grow={false}>
-                  <EuiSelect
-                    compressed
-                    options={[
-                      { value: 1, text: '1' },
-                      { value: 2, text: '2' },
-                      { value: 4, text: '4' },
-                      { value: 8, text: '8' },
-                    ]}
-                  />
-                </EuiFlexItem>
-                <EuiFlexItem grow={false}>
-                  <EuiText>days.</EuiText>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-            </EuiFormRow>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiFormRow>
-              <EuiButton iconType="controlsVertical">
-                Advanced settings
-              </EuiButton>
-            </EuiFormRow>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </EuiPanel>
-      <div className={`tier-container ${tierClass}`}>
-        <div className="tier-container__content">
-          <EuiFlexGroup justifyContent="spaceBetween" gutterSize="none">
-            <EuiFlexItem grow={false}>
-              <EuiText size="s">
-                <h3>{tierTitle} tier</h3>
-              </EuiText>
+    <div className="outer-container">
+      <div
+        className={`floating-panels-container ${
+          noBottomConnector ? '' : 'floating-panels-container--bottom-connector'
+        }`}>
+        <EuiPanel className="phase-container" hasShadow={false}>
+          <EuiTitle size="m">
+            <h2>{phaseTitle} phase</h2>
+          </EuiTitle>
+          <EuiSpacer size="m" />
+          <EuiFlexGroup direction="column">
+            <EuiFlexItem>
+              <EuiFormRow>
+                <EuiFlexGroup gutterSize="s" alignItems="center">
+                  <EuiFlexItem grow={false}>
+                    <EuiText>Retain data in this phase for</EuiText>
+                  </EuiFlexItem>
+                  <EuiFlexItem grow={false}>
+                    <EuiSelect
+                      compressed
+                      options={[
+                        { value: 1, text: '1' },
+                        { value: 2, text: '2' },
+                        { value: 4, text: '4' },
+                        { value: 8, text: '8' },
+                      ]}
+                    />
+                  </EuiFlexItem>
+                  <EuiFlexItem grow={false}>
+                    <EuiText>days.</EuiText>
+                  </EuiFlexItem>
+                </EuiFlexGroup>
+              </EuiFormRow>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <EuiFlexGroup>
-                <EuiFlexItem>
-                  <EuiButtonEmpty style={{ height: '25px' }} size="s">
-                    View Nodes
-                  </EuiButtonEmpty>
-                </EuiFlexItem>
-                <EuiFlexItem>
-                  <EuiButtonEmpty style={{ height: '25px' }} size="s">
-                    Change Allocation
-                  </EuiButtonEmpty>
-                </EuiFlexItem>
-              </EuiFlexGroup>
+              <EuiFormRow>
+                <EuiButton iconType="controlsVertical">
+                  Advanced settings
+                </EuiButton>
+              </EuiFormRow>
             </EuiFlexItem>
           </EuiFlexGroup>
+        </EuiPanel>
+        <div className={`tier-container ${tierClass}`}>
+          <div className="tier-container__content">
+            <EuiFlexGroup justifyContent="spaceBetween" gutterSize="none">
+              <EuiFlexItem grow={false}>
+                <EuiText size="s">
+                  <h3>{tierTitle} tier</h3>
+                </EuiText>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiFlexGroup>
+                  <EuiFlexItem>
+                    <EuiButtonEmpty style={{ height: '25px' }} size="s">
+                      View Nodes
+                    </EuiButtonEmpty>
+                  </EuiFlexItem>
+                  <EuiFlexItem>
+                    <EuiButtonEmpty style={{ height: '25px' }} size="s">
+                      Change Allocation
+                    </EuiButtonEmpty>
+                  </EuiFlexItem>
+                </EuiFlexGroup>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,14 @@
 @import '~@elastic/eui/src/global_styling/variables/colors';
 
-.settings-container {
+$borderColor: #D3DAE6;
+
+.outer-container {
+  // padding: 20px;
+  // border: 1px solid $borderColor;
+  // border-radius: 6px;
+}
+
+.floating-panels-container {
   position: relative;
   margin-bottom: 40px;
 
@@ -9,10 +17,10 @@
       content: '';
       position: absolute;
       left: 50%;
-      bottom: -55px;
+      bottom: -78px;
       width: 6px;
-      background-color: #D3DAE6;
-      height: 25px;
+      // background-color: $borderColor;
+      height: 17px;
       z-index: 2;
     }
   }
@@ -53,5 +61,6 @@
 .phase-container {
   position: relative;
   // box-shadow: none !important;
+  // border: 1px solid $borderColor;
   z-index: 1;
 }
