@@ -61,7 +61,7 @@ const Phase = ({
               <EuiFormRow>
                 <EuiFlexGroup gutterSize="s" alignItems="center">
                   <EuiFlexItem grow={false}>
-                    <EuiText>Retain data in this phase for</EuiText>
+                    <EuiText>Keep data in this phase for</EuiText>
                   </EuiFlexItem>
                   <EuiFlexItem grow={false}>
                     <EuiSelect
@@ -161,7 +161,7 @@ export default () => (
         <EuiSpacer size="m" />
         <Phase phase="warm" tier="hot" />
         <EuiSpacer size="m" />
-        <Phase phase="cold" tier="warm" noBottomConnector />
+        <Phase phase="cold" tier="cold" noBottomConnector />
       </EuiPageContent>
     </EuiPageBody>
   </EuiPage>
