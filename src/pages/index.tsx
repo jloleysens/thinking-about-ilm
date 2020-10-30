@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   EuiButton,
   EuiButtonEmpty,
@@ -16,7 +16,12 @@ import {
   EuiFormRow,
   EuiSelect,
   EuiHorizontalRule,
+  EuiBottomBar,
+  EuiSwitch,
 } from '@elastic/eui';
+
+import { NavButton } from '../components/nav_button';
+import { Timeline } from '../components/timeline';
 
 import '../themes/theme_light.scss';
 import './index.scss';
@@ -33,6 +38,10 @@ const titleMap = {
   cold: 'Cold',
 };
 
+const tierIconMap = {
+  hot: 'temperature',
+};
+
 const Phase = ({
   phase,
   tier,
@@ -42,9 +51,11 @@ const Phase = ({
   tier: keyof typeof tierClassMap;
   noBottomConnector?: boolean;
 }) => {
+  const [showSettings, setShowSettings] = useState(false);
   const phaseTitle = titleMap[phase];
   const tierClass = tierClassMap[tier];
   const tierTitle = titleMap[tier];
+  const tierIcon = tierIconMap[tier];
   return (
     <div className="outer-container">
       <div
@@ -52,11 +63,24 @@ const Phase = ({
           noBottomConnector ? '' : 'floating-panels-container--bottom-connector'
         }`}>
         <EuiPanel className="phase-container" hasShadow={false}>
-          <EuiTitle size="m">
-            <h2>{phaseTitle} phase</h2>
-          </EuiTitle>
+          <EuiFlexGroup
+            direction="row"
+            justifyContent="center"
+            alignItems="center">
+            <EuiFlexItem>
+              <EuiTitle size="s">
+                <h2>{phaseTitle} phase</h2>
+              </EuiTitle>
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiSwitch label="Active" checked={true} onChange={() => {}} />
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiButtonEmpty size="xs">Edit</EuiButtonEmpty>
+            </EuiFlexItem>
+          </EuiFlexGroup>
           <EuiSpacer size="m" />
-          <EuiFlexGroup direction="column">
+          <EuiFlexGroup gutterSize="s" direction="column">
             <EuiFlexItem>
               <EuiFormRow>
                 <EuiFlexGroup gutterSize="s" alignItems="center">
@@ -80,20 +104,13 @@ const Phase = ({
                 </EuiFlexGroup>
               </EuiFormRow>
             </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiFormRow>
-                <EuiButton iconType="controlsVertical">
-                  Advanced settings
-                </EuiButton>
-              </EuiFormRow>
-            </EuiFlexItem>
           </EuiFlexGroup>
         </EuiPanel>
         <div className={`tier-container ${tierClass}`}>
           <div className="tier-container__content">
             <EuiFlexGroup justifyContent="spaceBetween" gutterSize="none">
               <EuiFlexItem grow={false}>
-                <EuiText size="s">
+                <EuiText size="xs">
                   <h3>{tierTitle} tier</h3>
                 </EuiText>
               </EuiFlexItem>
@@ -101,12 +118,7 @@ const Phase = ({
                 <EuiFlexGroup>
                   <EuiFlexItem>
                     <EuiButtonEmpty style={{ height: '25px' }} size="s">
-                      View Nodes
-                    </EuiButtonEmpty>
-                  </EuiFlexItem>
-                  <EuiFlexItem>
-                    <EuiButtonEmpty style={{ height: '25px' }} size="s">
-                      Change Allocation
+                      View Details
                     </EuiButtonEmpty>
                   </EuiFlexItem>
                 </EuiFlexGroup>
@@ -119,50 +131,69 @@ const Phase = ({
   );
 };
 
-export default () => (
-  <EuiPage restrictWidth>
-    <EuiPageBody>
-      <EuiPageHeader>
-        <EuiPageHeaderSection>
-          <EuiTitle size="l">
-            <h1>Data Tiers, ILM &amp; Data Retention</h1>
+export default () => {
+  const [showTimeline, setShowTimeline] = useState(false);
+  return (
+    <EuiPage restrictWidth>
+      <EuiPageBody>
+        <EuiPageHeader>
+          <EuiPageHeaderSection>
+            <EuiTitle size="l">
+              <h1>Data Tiers, ILM &amp; Data Retention</h1>
+            </EuiTitle>
+          </EuiPageHeaderSection>
+        </EuiPageHeader>
+        <EuiPageContent>
+          <EuiButton onClick={() => setShowTimeline(v => !v)}>
+            Toggle timeline
+          </EuiButton>
+          <EuiSpacer size="m" />
+          <EuiTitle size="m">
+            <h2>Happy path</h2>
           </EuiTitle>
-        </EuiPageHeaderSection>
-      </EuiPageHeader>
-      <EuiPageContent>
-        <EuiTitle size="m">
-          <h2>Happy path</h2>
-        </EuiTitle>
-        <EuiSpacer size="xxl" />
-        <Phase phase="hot" tier="hot" />
-        <EuiSpacer size="m" />
-        <Phase phase="warm" tier="warm" />
-        <EuiSpacer size="m" />
-        <Phase phase="cold" tier="cold" noBottomConnector />
-        <EuiSpacer size="xxl" />
-        <EuiHorizontalRule />
-        <EuiTitle size="m">
-          <h2>All hot</h2>
-        </EuiTitle>
-        <EuiSpacer size="xxl" />
-        <Phase phase="hot" tier="hot" />
-        <EuiSpacer size="m" />
-        <Phase phase="warm" tier="hot" />
-        <EuiSpacer size="m" />
-        <Phase phase="cold" tier="hot" noBottomConnector />
-        <EuiSpacer size="xxl" />
-        <EuiHorizontalRule />
-        <EuiSpacer size="xxl" />
-        <EuiTitle size="m">
-          <h2>Hot, hot, warm</h2>
-        </EuiTitle>
-        <EuiSpacer size="xxl" />
-        <Phase phase="hot" tier="hot" />
-        <EuiSpacer size="m" />
-        <Phase phase="warm" tier="hot" />
-        <EuiSpacer size="m" />
-        <Phase phase="cold" tier="cold" noBottomConnector />
-      </EuiPageContent>
-    </EuiPageBody>
-  </EuiPage>
-);
+          <EuiSpacer size="xxl" />
+          <EuiTitle size="s">
+            <h3>Data retention overview</h3>
+          </EuiTitle>
+          <EuiSpacer size="m" />
+          <Timeline />
+          <EuiSpacer size="m" />
+          <Phase phase="hot" tier="hot" />
+          <EuiSpacer size="m" />
+          <Phase phase="warm" tier="warm" />
+          <EuiSpacer size="m" />
+          <Phase phase="cold" tier="cold" noBottomConnector />
+          <EuiSpacer size="xxl" />
+          <EuiHorizontalRule />
+          <EuiTitle size="m">
+            <h2>All hot</h2>
+          </EuiTitle>
+          <EuiSpacer size="xxl" />
+          <Phase phase="hot" tier="hot" />
+          <EuiSpacer size="m" />
+          <Phase phase="warm" tier="hot" />
+          <EuiSpacer size="m" />
+          <Phase phase="cold" tier="hot" noBottomConnector />
+          <EuiSpacer size="xxl" />
+          <EuiHorizontalRule />
+          <EuiSpacer size="xxl" />
+          <EuiTitle size="m">
+            <h2>Hot, hot, warm</h2>
+          </EuiTitle>
+          <EuiSpacer size="xxl" />
+          <Phase phase="hot" tier="hot" />
+          <EuiSpacer size="m" />
+          <Phase phase="warm" tier="hot" />
+          <EuiSpacer size="m" />
+          <Phase phase="cold" tier="cold" noBottomConnector />
+          <NavButton to="/idea-2">Go to page 2</NavButton>
+        </EuiPageContent>
+      </EuiPageBody>
+      {showTimeline && (
+        <EuiBottomBar>
+          <Timeline />
+        </EuiBottomBar>
+      )}
+    </EuiPage>
+  );
+};
