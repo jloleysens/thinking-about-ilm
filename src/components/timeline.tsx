@@ -45,15 +45,9 @@ export const Timeline = () => {
         max={100}
       />
       <div style={{ position: 'relative', height: '30px', width: '100%' }}>
-        <EuiButtonEmpty size="xs" style={{ position: 'absolute', left: '0%' }}>
-          Hot phase
-        </EuiButtonEmpty>
-        <EuiButtonEmpty size="xs" style={{ position: 'absolute', left: '18%' }}>
-          Warm phase
-        </EuiButtonEmpty>
-        <EuiButtonEmpty size="xs" style={{ position: 'absolute', left: '90%' }}>
-          Delete phase
-        </EuiButtonEmpty>
+        <div style={{ position: 'absolute', left: '0%' }}>Hot phase</div>
+        <div style={{ position: 'absolute', left: '18%' }}>Warm phase</div>
+        <div style={{ position: 'absolute', left: '90%' }}>Delete phase</div>
       </div>
     </div>
   );

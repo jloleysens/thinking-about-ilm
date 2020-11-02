@@ -12,18 +12,18 @@ $borderColor: #D3DAE6;
   position: relative;
   margin-bottom: 40px;
 
-  &--bottom-connector {
-    &::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      bottom: -78px;
-      width: 6px;
-      // background-color: $borderColor;
-      height: 17px;
-      z-index: 2;
-    }
-  }
+  // &--bottom-connector {
+  //   &::before {
+  //     content: '';
+  //     position: absolute;
+  //     left: 50%;
+  //     bottom: -78px;
+  //     width: 6px;
+  //     // background-color: $borderColor;
+  //     height: 17px;
+  //     z-index: 2;
+  //   }
+  // }
 }
 
 .tier-container {
@@ -62,5 +62,5 @@ $borderColor: #D3DAE6;
   position: relative;
   // box-shadow: none !important;
   // border: 1px solid $borderColor;
-  z-index: 1;
+  // z-index: 1;
 }
