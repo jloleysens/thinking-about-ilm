@@ -211,6 +211,9 @@ export default () => {
           <EuiSpacer size="m" />
           <Phase phase="cold" tier="cold" noBottomConnector />
           <NavButton to="/idea-2">Go to page 2</NavButton>
+          <NavButton to="/timing-selection-page">
+            Go to timing selection
+          </NavButton>
         </EuiPageContent>
       </EuiPageBody>
       {showTimeline && (

@@ -10,9 +10,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiSpacer,
-  EuiForm,
   EuiFormRow,
-  EuiFieldNumber,
   EuiFieldText,
   EuiTabbedContent,
   EuiPanel,
@@ -25,7 +23,6 @@ import {
   EuiEmptyPrompt,
   EuiIconTip,
   EuiDescribedFormGroup,
-  EuiToggle,
   EuiFlyoutHeader,
 } from '@elastic/eui';
 
