@@ -111,7 +111,9 @@ const AfterAtLeast = () => {
           <EuiFlexItem grow={2}>
             {warmEnabled && (
               <>
-                <EuiFormRow fullWidth={false} label="After at least">
+                <EuiFormRow
+                  fullWidth={false}
+                  label="Move to this phase after at least">
                   <EuiFieldNumber value={7} onChange={() => {}} append="days" />
                 </EuiFormRow>
                 {/* <EuiSpacer size="s" />
@@ -149,7 +151,9 @@ const AfterAtLeast = () => {
           <EuiFlexItem grow={2}>
             {coldEnabled && (
               <>
-                <EuiFormRow fullWidth={false} label="After at least">
+                <EuiFormRow
+                  fullWidth={false}
+                  label="Move to this phase after at least">
                   <EuiFieldNumber
                     value={14}
                     onChange={() => {}}
@@ -184,7 +188,9 @@ const AfterAtLeast = () => {
           </EuiFlexItem>
           <EuiFlexItem grow={2}>
             {deleteEnabled && (
-              <EuiFormRow fullWidth={false} label="After at least">
+              <EuiFormRow
+                fullWidth={false}
+                label="Move to this phase after at least">
                 <EuiFieldNumber value={35} onChange={() => {}} append="days" />
               </EuiFormRow>
             )}
